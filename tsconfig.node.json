@@ -4,8 +4,7 @@
     "skipLibCheck": true,
     "module": "ES2022",
     "moduleResolution": "Node",
-    "allowSyntheticDefaultImports": true,
-    "noImplicitReturns": true
+    "allowSyntheticDefaultImports": true
   },
   "include": [
     "vite.config.ts"

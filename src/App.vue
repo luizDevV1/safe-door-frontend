@@ -3,7 +3,9 @@
     <custom-header />
 
     <q-page-container>
-      <q-page padding>
+      <q-page
+        padding
+      >
         <router-view />
       </q-page>
     </q-page-container>

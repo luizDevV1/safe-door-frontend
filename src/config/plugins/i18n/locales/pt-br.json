@@ -1,6 +1,11 @@
 {
   "message": {
+    "email": "E-mail",
+    "password": "Senha",
+    "welcome": "Bem vindo",
     "title_system": "Safe-Door",
-    "await": "Aguarde"
+    "to_enter": "Entrar",
+    "await": "Aguarde",
+    "remember_me": "Lembre de mim"
   }
 }

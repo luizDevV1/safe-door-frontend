@@ -1,18 +1,31 @@
-# Vue 3 + TypeScript + Vite
+# Bem vindo ao Safe door [front-end]
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## Objetivo do projeto
 
-## Recommended IDE Setup
+> Criar uma estrutura de projeto baseada em permissões e para controle de acesso ao qual usuário será atribuído, podendo
+> ser personalizada com facilidade.
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## Estrutura do projeto
 
-## Type Support For `.vue` Imports in TS
+> Nessa sessão sera definida a estrutura do projeto, todas as pastas abaixo estão contidas dentro de `/src`:
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
-
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+- `/assets` Arquivos auxiliares que serão utilizadas por plugins de terceiros, imagens…
+- `/configs` Arquivos de configurações, sejam eles necessários para utilização de plugins ou quaisquer que sejam sua
+  necessidade.
+- `/controllers` Pasta onde todas as ações referentes a **configurações, plugins, conexões com *APIs*** serão
+  realizadas.
+    - `/services` Pasta contendo todas as conexões possíveis com as ***APIs***.
+- `/models` Pasta contendo todas as **entidades, DTOs e Regras de implementação** da aplicação.
+    - `/entities` Pasta contendo os modelos representativos das tabelas do banco.
+    - `/dtos` Pasta contendo os modelos de regra de negócio que devem ter como extensão os arquivos da sua
+      respectiva entidade.
+- `/views` Pasta contem todos os **componentes e arquivos de estilo** da aplicação.
+    - `/pages` Pasta contem todos os componentes que recebem rotas de acesso.
+    - `/data` Pasta funciona como o "design-pattern proxy" comunicando os componentes com sua respectiva service,
+      todos os arquivos aqui devem conter no nome `[component].data`.
+    - `/components` Pasta contem todos os componentes que não recebem rotas de acesso e serão reutilizadas eu vários
+      locais.
+    - `/styles` Pasta contendo arquivos de estilo.
+- `**/shared` `Opcional` Todas as regras serão definidas que devem ser obrigatoriamente implementas em seus
+  respectivos arquivos.
+- `**/utils` `Opcional` Todos os arquivos que provem auxilio no desenvolvimento, porém não são obrigatórios.

@@ -4,17 +4,20 @@
     "useDefineForClassFields": true,
     "module": "ES2022",
     "lib": [
+      "ES2020",
+      "ES2021",
       "ES2022",
       "DOM",
       "DOM.Iterable"
     ],
     "types": [
-      "node"
+      "node",
+      "vite/client"
     ],
     "declaration": false,
     "skipLibCheck": true,
     /* Bundler mode */
-    "moduleResolution": "Node16",
+    "moduleResolution": "Node",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -24,7 +27,13 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "~@/*": [
+        "./src/*"
+      ]
+    }
   },
   "include": [
     "src/**/*.ts",
@@ -36,5 +45,6 @@
     {
       "path": "./tsconfig.node.json"
     }
-  ]
+  ],
+  "exclude": ["node_modules"]
 }

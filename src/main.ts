@@ -5,6 +5,7 @@ import { options } from '~@/config/plugins/quasar/plugin.ts'
 import Router from '~@/config/plugins/router'
 import i18n from '~@/config/plugins/i18n'
 import store from '~@/config/pinia'
+import '~@/views/styles/style.css'
 
 const app = createApp(App)
 

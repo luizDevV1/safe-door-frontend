@@ -20,6 +20,7 @@
                 name="email"
               >
                 <q-input
+                  ref="sfd_email"
                   dense
                   hide-bottom-space
                   :model-value="value"
@@ -51,16 +52,6 @@
                   outlined
                 />
               </vee-field>
-            </div>
-
-            <div class="col-12">
-              <div class="flex justify-end">
-                <q-checkbox
-                  :model-value="remember_me"
-                  :label="$t('message.remember_me')"
-                  class="q-pa-none q-ma-none"
-                />
-              </div>
             </div>
 
             <div class="col-12">
@@ -112,8 +103,10 @@ import { ref } from 'vue'
 import * as yup from 'yup'
 import i18n from '~@/config/plugins/i18n'
 import { Field as VeeField, Form as VeeForm } from 'vee-validate'
+import { QInput } from 'quasar'
 
-const remember_me = ref(false)
+const sfd_email = ref<QInput>()
+
 const { t } = i18n.global
 
 const schema = yup.object({

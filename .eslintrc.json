@@ -4,11 +4,9 @@
     "es2021": true
   },
   "extends": [
-    "plugin:vue/base",
+    "eslint:recommended",
     "plugin:vue/vue3-recommended",
-    "plugin:vue/vue3-essential",
     "plugin:@typescript-eslint/recommended",
-    "plugin:vue/vue3-essential",
     "standard-with-typescript"
   ],
   "overrides": [
@@ -29,17 +27,15 @@
       }
     }
   ],
+  "parser": "vue-eslint-parser",
   "parserOptions": {
-    "parse": "@typescript-eslint/parser",
-    "project": [
-      "./tsconfig.json"
-    ],
-    "ecmaVersion": "latest",
+    "parser": "@typescript-eslint/parser",
     "sourceType": "module"
   },
   "plugins": [
     "vue",
-    "quasar"
+    "quasar",
+    "@typescript-eslint"
   ],
   "rules": {
     "@typescript-eslint/key-spacing": "off",

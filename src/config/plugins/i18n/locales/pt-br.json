@@ -6,6 +6,12 @@
     "title_system": "Safe-Door",
     "to_enter": "Entrar",
     "await": "Aguarde",
-    "remember_me": "Lembre de mim"
+    "remember_me": "Lembre de mim",
+    "required_field": "Campo obrigatório",
+    "this_field_is_required": "Este campo e obrigatório",
+    "must_have_at_least": "Deve ter no mínimo",
+    "characters": "Caracteres",
+    "invalid": "Invalido",
+    "clear": "Limpar"
   }
 }

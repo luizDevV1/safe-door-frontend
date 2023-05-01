@@ -1,5 +1,5 @@
 {
-  "name": "safe-door",
+  "name": "safe-door-frontend",
   "author": {
     "email": "contato@luizhcgdev.com.br",
     "name": "Luiz Gonçalves"
@@ -13,11 +13,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "pinia": "^2.0.35",
+    "@vee-validate/i18n": "4.8.6",
+    "pinia": "2.0.35",
     "quasar": "2.11.10",
+    "vee-validate": "4.8.6",
     "vue": "3.2.47",
-    "vue-i18n": "^9.2.2",
-    "vue-router": "4.1.6"
+    "vue-i18n": "9.2.2",
+    "vue-router": "4.1.6",
+    "yup": "^1.1.1"
   },
   "devDependencies": {
     "@intlify/unplugin-vue-i18n": "0.10.0",

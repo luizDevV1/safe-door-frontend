@@ -19,6 +19,14 @@
       "rules": {
         "vue/multi-word-component-names": 0
       }
+    },
+    {
+      "files": [
+        "src/config/plugins/yup/**"
+      ],
+      "rules": {
+        "no-template-curly-in-string": 0
+      }
     }
   ],
   "parserOptions": {

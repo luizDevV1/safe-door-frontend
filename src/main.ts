@@ -6,6 +6,7 @@ import Router from '~@/config/plugins/router'
 import i18n from '~@/config/plugins/i18n'
 import store from '~@/config/pinia'
 import '~@/views/styles/style.css'
+import '~@/config/plugins/yup'
 
 const app = createApp(App)
 

@@ -15,9 +15,6 @@ export const options = {
     Dialog,
     Loading
   },
-  config: {
-    dark: true
-  },
   lang: quasarLang,
   animations: 'all',
   extras: ['material-icons', 'mdi', 'fontawesome-v6'],

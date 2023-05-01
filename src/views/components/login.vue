@@ -7,26 +7,50 @@
       />
     </div>
     <q-card class="shadow-1">
-      <q-form @submit.prevent="submit_login">
+      <vee-form
+        :initial-values="initial_values"
+        :validation-schema="schema"
+        @submit="submit_login"
+      >
         <q-card-section>
           <div class="row q-col-gutter-sm">
             <div class="col-12">
-              <q-input
-                dense
-                :label="$t('message.email')"
-                outlined
-                :rules="[]"
-              />
+              <vee-field
+                v-slot="{ errorMessage, value, field }"
+                name="email"
+              >
+                <q-input
+                  dense
+                  hide-bottom-space
+                  :model-value="value"
+                  v-bind="field"
+                  :error-message="errorMessage"
+                  :error="!!errorMessage"
+                  no-error-icon
+                  :label="$t('message.email')"
+                  outlined
+                />
+              </vee-field>
             </div>
 
             <div class="col-12">
-              <q-input
-                :label="$t('message.password')"
-                dense
-                outlined
-                :rules="[]"
-                type="password"
-              />
+              <vee-field
+                v-slot="{ errorMessage, value, field }"
+                name="password"
+              >
+                <q-input
+                  type="password"
+                  dense
+                  hide-bottom-space
+                  :model-value="value"
+                  v-bind="field"
+                  :error-message="errorMessage"
+                  :error="!!errorMessage"
+                  no-error-icon
+                  :label="$t('message.password')"
+                  outlined
+                />
+              </vee-field>
             </div>
 
             <div class="col-12">
@@ -45,6 +69,15 @@
                 class="full-width"
                 color="primary"
                 :label="$t('message.to_enter')"
+              />
+            </div>
+
+            <div class="col-12">
+              <q-btn
+                type="reset"
+                class="full-width text-grey-8"
+                color="grey-3"
+                :label="$t('message.clear')"
               />
             </div>
           </div>
@@ -69,18 +102,32 @@
             />
           </div>
         </q-card-section>
-      </q-form>
+      </vee-form>
     </q-card>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue'
+import * as yup from 'yup'
+import i18n from '~@/config/plugins/i18n'
+import { Field as VeeField, Form as VeeForm } from 'vee-validate'
 
 const remember_me = ref(false)
+const { t } = i18n.global
 
-function submit_login () {
-  console.log('ok')
+const schema = yup.object({
+  email: yup.string().required().email().label(t('message.email')),
+  password: yup.string().required().min(8).label(t('message.password'))
+})
+
+const initial_values = {
+  email: 'test',
+  password: undefined
+}
+
+function submit_login (form) {
+  console.log('ok', form)
 }
 </script>
 

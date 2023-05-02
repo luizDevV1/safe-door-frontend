@@ -7,4 +7,15 @@
   transform: translate(-50%, -50%);
 }
 
+fieldset {
+  border: 2px solid;
+  border-image-slice: 1;
+  border-image-source: linear-gradient(to right, #ffae00, #f9e866);
+}
+
+legend {
+  margin: 0 auto;
+  padding: 0 12px;
+}
+
 /*# sourceMappingURL=login.css.map */

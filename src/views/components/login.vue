@@ -1,15 +1,17 @@
 <template>
   <div class="login-form">
-    <div class="row">
-      <span
-        class="text-h5 q-my-md"
+    <q-card
+      class="shadow-1"
+    >
+      <div
+        class="row banner shadow-1 q-pa-xs text-bold"
         v-text="$t('message.welcome')"
       />
-    </div>
-    <q-card class="shadow-1">
+
       <vee-form
+        ref="sfd_form"
         :initial-values="initial_values"
-        :validation-schema="schema"
+        :validation-schema="data.schema"
         @submit="submit_login"
       >
         <q-card-section>
@@ -21,15 +23,15 @@
               >
                 <q-input
                   ref="sfd_email"
+                  :error="!!errorMessage"
+                  :error-message="errorMessage"
+                  :label="$t('message.email')"
+                  :model-value="value"
                   dense
                   hide-bottom-space
-                  :model-value="value"
-                  v-bind="field"
-                  :error-message="errorMessage"
-                  :error="!!errorMessage"
                   no-error-icon
-                  :label="$t('message.email')"
                   outlined
+                  v-bind="field"
                 />
               </vee-field>
             </div>
@@ -40,58 +42,64 @@
                 name="password"
               >
                 <q-input
-                  type="password"
+                  :error="!!errorMessage"
+                  :error-message="errorMessage"
+                  :label="$t('message.password')"
+                  :model-value="value"
                   dense
                   hide-bottom-space
-                  :model-value="value"
-                  v-bind="field"
-                  :error-message="errorMessage"
-                  :error="!!errorMessage"
                   no-error-icon
-                  :label="$t('message.password')"
                   outlined
+                  type="password"
+                  v-bind="field"
                 />
               </vee-field>
             </div>
 
             <div class="col-12">
-              <q-btn
-                type="submit"
-                class="full-width"
-                color="primary"
-                :label="$t('message.to_enter')"
-              />
+              <div class="flex justify-end">
+                <q-checkbox
+                  :label="$t('message.remember_me')"
+                  :model-value="remember_me"
+                  class="q-pa-none q-ma-none"
+                  @update:model-value="store.SET_REMEMBER_ME_VALUE(String(sfd_email?.modelValue))"
+                />
+              </div>
             </div>
 
             <div class="col-12">
               <q-btn
-                type="reset"
-                class="full-width text-grey-8"
-                color="grey-3"
-                :label="$t('message.clear')"
+                :label="$t('message.to_enter')"
+                class="full-width banner"
+                type="submit"
               />
             </div>
           </div>
         </q-card-section>
 
         <q-card-section>
-          <div class="q-gutter-md flex flex-center">
-            <q-btn
-              icon="fa-brands fa-google"
-              class="q-pa-sm"
-              color="red"
-              outline
-              round
-            />
+          <fieldset>
+            <legend class="text-grey-6 text-bold text-italic">
+              <span v-text="$t('message.or')" />
+            </legend>
+            <div class="q-gutter-md flex flex-center">
+              <q-btn
+                class="q-pa-sm"
+                color="red"
+                icon="fa-brands fa-google"
+                outline
+                round
+              />
 
-            <q-btn
-              icon="fa-brands fa-facebook-f"
-              color="blue"
-              outline
-              class="q-pa-sm"
-              round
-            />
-          </div>
+              <q-btn
+                class="q-pa-sm"
+                color="blue"
+                icon="fa-brands fa-facebook-f"
+                outline
+                round
+              />
+            </div>
+          </fieldset>
         </q-card-section>
       </vee-form>
     </q-card>
@@ -99,27 +107,27 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
-import * as yup from 'yup'
-import i18n from '~@/config/plugins/i18n'
+import { reactive, ref } from 'vue'
 import { Field as VeeField, Form as VeeForm } from 'vee-validate'
 import { QInput } from 'quasar'
+import { storeToRefs } from 'pinia'
+import { LOGIN_STORE } from '~@/config/pinia/modules/login.store.ts'
+import LoginData from '~@/views/data/login.data.ts'
+
+const data = reactive(LoginData)
 
 const sfd_email = ref<QInput>()
 
-const { t } = i18n.global
+const store = LOGIN_STORE()
 
-const schema = yup.object({
-  email: yup.string().required().email().label(t('message.email')),
-  password: yup.string().required().min(8).label(t('message.password'))
-})
+const { remember_me } = storeToRefs(store)
 
 const initial_values = {
-  email: 'test',
+  email: store.get_remember_me_value,
   password: undefined
 }
 
-function submit_login (form) {
+function submit_login (form): void {
   console.log('ok', form)
 }
 </script>

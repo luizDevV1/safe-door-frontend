@@ -12,6 +12,7 @@
     "must_have_at_least": "Deve ter no mínimo",
     "characters": "Caracteres",
     "invalid": "Invalido",
-    "clear": "Limpar"
+    "clear": "Limpar",
+    "or": "Ou"
   }
 }

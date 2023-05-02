@@ -1,3 +1,5 @@
+@import "../../assets/quasar/variables"
+
 .login-form
   width: 100%
   max-width: 400px
@@ -5,3 +7,12 @@
   top: 50%
   left: 50%
   transform: translate(-50%, -50%)
+
+fieldset
+  border: 2px solid
+  border-image-slice: 1
+  border-image-source: linear-gradient(to right, $primary, $secondary)
+
+legend
+  margin: 0 auto
+  padding: 0 12px

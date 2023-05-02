@@ -25,6 +25,25 @@
       "rules": {
         "no-template-curly-in-string": 0
       }
+    },
+    {
+      "files": [
+        "*.ts",
+        "*.tsx"
+      ],
+      "extends": [
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking"
+      ],
+      "rules": {
+        "camelcase": "off",
+        "@typescript-eslint/naming-convention": "off"
+      },
+      "parserOptions": {
+        "project": [
+          "./tsconfig.json"
+        ]
+      }
     }
   ],
   "parser": "vue-eslint-parser",

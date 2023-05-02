@@ -9,7 +9,7 @@
       />
 
       <vee-form
-        ref="sfd_reset_form"
+        ref="sfd_form"
         :initial-values="initial_values"
         :validation-schema="data.schema"
         @submit="submit_login"
@@ -62,7 +62,7 @@
                   :label="$t('message.remember_me')"
                   :model-value="remember_me"
                   class="q-pa-none q-ma-none"
-                  @update:model-value="store.SET_REMEMBER_ME_VALUE(String(sfd_email?.modelValue))"
+                  @update:model-value="update_remember_me_value"
                 />
               </div>
             </div>
@@ -108,17 +108,20 @@
 
 <script lang="ts" setup>
 import { reactive, ref } from 'vue'
-import { Field as VeeField, Form as VeeForm, type FormActions } from 'vee-validate'
-import { QBtn, QInput } from 'quasar'
+import { Field as VeeField, Form as VeeForm, FormContext } from 'vee-validate'
+import { QBtn, QInput, useQuasar } from 'quasar'
 import { storeToRefs } from 'pinia'
 import { LOGIN_STORE } from '~@/config/pinia/modules/login.store.ts'
 import LoginData from '~@/views/data/login.data.ts'
 import { ILoginDto } from '~@/models/dtos/login.dto.ts'
+import i18n from '~@/config/plugins/i18n'
 
+const q = useQuasar()
 const data = reactive(LoginData)
+const { t } = i18n.global
 
 const sfd_email = ref<QInput>()
-const sfd_reset_form = ref<FormActions<ILoginDto>>()
+const sfd_form = ref<FormContext<ILoginDto>>()
 
 const store = LOGIN_STORE()
 
@@ -131,7 +134,26 @@ const initial_values: Partial<ILoginDto> = {
 
 function submit_login (user): void {
   store.$patch({ user })
-  sfd_reset_form.value?.resetForm()
+  sfd_form.value?.resetForm()
+}
+
+async function update_remember_me_value (): Promise<void> {
+  await sfd_form.value?.validateField('email').then(({ valid }) => {
+    if (!valid) {
+      q.notify({
+        type: 'negative',
+        message: `${t('message.email')} ${t('message.invalid')}`
+      })
+
+      return
+    }
+
+    store.SET_REMEMBER_ME_VALUE(String(sfd_email?.value?.modelValue))
+
+    if (!remember_me.value) {
+      sfd_form.value?.setValues({ email: undefined })
+    }
+  })
 }
 </script>
 

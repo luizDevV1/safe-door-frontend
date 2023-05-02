@@ -9,7 +9,7 @@
       />
 
       <vee-form
-        ref="sfd_form"
+        ref="sfd_reset_form"
         :initial-values="initial_values"
         :validation-schema="data.schema"
         @submit="submit_login"
@@ -108,27 +108,30 @@
 
 <script lang="ts" setup>
 import { reactive, ref } from 'vue'
-import { Field as VeeField, Form as VeeForm } from 'vee-validate'
-import { QInput } from 'quasar'
+import { Field as VeeField, Form as VeeForm, type FormActions } from 'vee-validate'
+import { QBtn, QInput } from 'quasar'
 import { storeToRefs } from 'pinia'
 import { LOGIN_STORE } from '~@/config/pinia/modules/login.store.ts'
 import LoginData from '~@/views/data/login.data.ts'
+import { ILoginDto } from '~@/models/dtos/login.dto.ts'
 
 const data = reactive(LoginData)
 
 const sfd_email = ref<QInput>()
+const sfd_reset_form = ref<FormActions<ILoginDto>>()
 
 const store = LOGIN_STORE()
 
 const { remember_me } = storeToRefs(store)
 
-const initial_values = {
+const initial_values: Partial<ILoginDto> = {
   email: store.get_remember_me_value,
   password: undefined
 }
 
-function submit_login (form): void {
-  console.log('ok', form)
+function submit_login (user): void {
+  store.$patch({ user })
+  sfd_reset_form.value?.resetForm()
 }
 </script>
 

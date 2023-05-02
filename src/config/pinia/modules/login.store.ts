@@ -1,11 +1,14 @@
 import { defineStore } from 'pinia'
+import { type ILoginDto } from '~@/models/dtos/login.dto.ts'
 
 export const LOGIN_STORE = defineStore('login', {
   state () {
     const remember_me = typeof localStorage.getItem('sfd_remember_me') === 'string'
+    const user: ILoginDto | null = null
 
     return {
-      remember_me
+      remember_me,
+      user
     }
   },
   actions: {

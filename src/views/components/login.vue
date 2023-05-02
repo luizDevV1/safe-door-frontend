@@ -27,6 +27,8 @@
                   :error-message="errorMessage"
                   :label="$t('message.email')"
                   :model-value="value"
+                  clear-icon="fa fa-close"
+                  clearable
                   dense
                   hide-bottom-space
                   no-error-icon
@@ -46,6 +48,8 @@
                   :error-message="errorMessage"
                   :label="$t('message.password')"
                   :model-value="value"
+                  clear-icon="fa fa-close"
+                  clearable
                   dense
                   hide-bottom-space
                   no-error-icon

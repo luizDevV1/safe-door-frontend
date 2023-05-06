@@ -10,7 +10,7 @@
 fieldset {
   border: 2px solid;
   border-image-slice: 1;
-  border-image-source: linear-gradient(to right, #ffae00, #f9e866);
+  border-image-source: linear-gradient(to right, #1976D2, #26A69A);
 }
 
 legend {

@@ -4,7 +4,7 @@
       class="shadow-1"
     >
       <div
-        class="row banner shadow-1 q-pa-xs text-bold"
+        class="row banner shadow-1 q-pa-xs text-bold text-white"
         v-text="$t('message.welcome')"
       />
 
@@ -74,7 +74,7 @@
             <div class="col-12">
               <q-btn
                 :label="$t('message.to_enter')"
-                class="full-width banner"
+                class="full-width banner text-white"
                 type="submit"
               />
             </div>
@@ -112,14 +112,16 @@
 
 <script lang="ts" setup>
 import { reactive, ref } from 'vue'
-import { Field as VeeField, Form as VeeForm, FormContext } from 'vee-validate'
+import { FormContext } from 'vee-validate'
 import { QBtn, QInput, useQuasar } from 'quasar'
 import { storeToRefs } from 'pinia'
 import { LOGIN_STORE } from '~@/config/pinia/modules/login.store.ts'
 import LoginData from '~@/views/data/login.data.ts'
 import { ILoginDto } from '~@/models/dtos/login.dto.ts'
 import i18n from '~@/config/plugins/i18n'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const q = useQuasar()
 const data = reactive(LoginData)
 const { t } = i18n.global
@@ -132,13 +134,14 @@ const store = LOGIN_STORE()
 const { remember_me } = storeToRefs(store)
 
 const initial_values: Partial<ILoginDto> = {
-  email: store.get_remember_me_value,
-  password: undefined
+  email: store.get_remember_me_value
 }
 
 function submit_login (user): void {
   store.$patch({ user })
   sfd_form.value?.resetForm()
+
+  router.push({ name: 'HOME' })
 }
 
 async function update_remember_me_value (): Promise<void> {

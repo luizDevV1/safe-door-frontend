@@ -36,6 +36,7 @@
         "plugin:@typescript-eslint/recommended-requiring-type-checking"
       ],
       "rules": {
+        "vue/one-component-per-file": 0,
         "camelcase": "off",
         "@typescript-eslint/naming-convention": "off"
       },

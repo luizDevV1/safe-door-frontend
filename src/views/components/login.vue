@@ -137,7 +137,7 @@ const initial_values: Partial<ILoginDto> = {
   email: store.get_remember_me_value
 }
 
-function submit_login (user): void {
+function submit_login (user: any): void {
   store.$patch({ user })
   sfd_form.value?.resetForm()
 

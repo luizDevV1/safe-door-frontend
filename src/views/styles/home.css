@@ -1,0 +1,11 @@
+.border-gradient-top {
+  border-width: 2px;
+  border-style: solid;
+  border-image-slice: 1;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0;
+  border-image-source: linear-gradient(to right, #26A69A, #1976D2);
+}
+
+/*# sourceMappingURL=home.css.map */
